@@ -1,0 +1,16 @@
+.search-ribbon {
+    background-color: #e7eaec;
+    padding: 5px;
+}
+
+.search-ribbon .search-element {
+    height: 40px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.search-ribbon label {
+    display: block;
+}

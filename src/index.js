@@ -2,16 +2,14 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import initializeStore from './redux/store';
+import App from './components/App';
+import './index.css';
 
 const store = initializeStore();
 
-function Hi() {
-  return <p>Hi.</p>;
-}
-
 render(
   <Provider store={store}>
-    <Hi />
+    <App />
   </Provider>, 
   document.getElementById("app")
 );
