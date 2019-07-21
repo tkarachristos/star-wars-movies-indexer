@@ -1,23 +1,37 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-import movies from "../api/mockData.js";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import fetchMoviesAction from '../redux/actions/fetchMovies';
 
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 
-import Movie from './Movie';
+import MovieItem from './MovieItem';
 
-export default class MoviesList extends React.Component {
+class MoviesList extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.shouldComponentRender = this.shouldComponentRender.bind(this);
     }
 
+    componentWillMount() {
+        if(this.props.pending === false) {
+            this.props.fetchMovies();
+        }
+    }
+
+    shouldComponentRender() {
+        if(this.props.pending === true) return false;
+        return true;
+    }
+        
     /**
      * Adopted from jquery.searcher plugin
      * @param text
      */
     escapeRegExp(text){
-        // see https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions
         return text.replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1");
     }
 
@@ -37,16 +51,19 @@ export default class MoviesList extends React.Component {
     }
 
     render(){
-        const regex = this.buildRegex(this.props.searchText);
+        if(!this.shouldComponentRender()) return <div>Fetching Movies</div>
 
-        const moviesList = movies.map(function(movie, index) {
+        const regex = this.buildRegex(this.props.searchText);
+               
+        const moviesList = this.props.movies.map(function(movie, index) {
+            console.log("movie: " + movie)
             // const moviesList = this.props.movies.map(function(movie) {
 
             let itemContainsText = !!movie.fields.title.match(regex);
 
             if (itemContainsText){
                 return (
-                    <Movie
+                    <MovieItem
                         onClick={() => {this.handleOnClick(index)}}
                         key={movie.id}
                         {...movie.fields}
@@ -65,19 +82,20 @@ export default class MoviesList extends React.Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         searchText: state.filter.searchText,
-//         sortBy: state.filter.sortBy,
-//         movies: state.moviesList
-//     }
-// };
+const mapStateToProps = (state) => {
+    return {
+        searchText: state.filter.searchText,
+        sortBy: state.filter.sortBy,
+        movies: state.movies.list,
+        pending: state.movies.pending
+    }
+};
 
-// const mapDispatchToProps = () => {
-//     return {}
-// };
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({fetchMovies: fetchMoviesAction}, dispatch)
+};
 
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(MoviesList);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MoviesList);

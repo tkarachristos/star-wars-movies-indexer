@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
-export default function Movie (props) {
+export default function MovieItem (props) {
     return (
         <ListGroupItem className="movie-row" onClick={props.onClick}>
             <Row justify="start">

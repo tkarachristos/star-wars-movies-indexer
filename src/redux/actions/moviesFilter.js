@@ -1,0 +1,2 @@
+export const SET_TEXT_FILTER = "SET_TEXT_FILTER";
+export const SET_SORT_FILTER = "SET_SORT_FILTER";

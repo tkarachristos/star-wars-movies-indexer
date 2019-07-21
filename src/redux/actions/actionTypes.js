@@ -1,5 +1,0 @@
-export const LOAD_MOVIES_SUCCESS = "LOAD_MOVIES_SUCCESS";
-export const BEGIN_API_CALL = "BEGIN_API_CALL";
-export const API_CALL_ERROR = "API_CALL_ERROR";
-export const SET_TEXT_FILTER = "SET_TEXT_FILTER";
-export const SET_TYPE_FILTER = "'SET_TYPE_FILTER";
