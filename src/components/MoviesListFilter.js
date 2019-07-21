@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/lib/Col';
 
 // import { textFilterChange, typeFilterChange  } from "../actions/filter";
 
-class MoviesListFilter extends React.Component {
+export default class MoviesListFilter extends React.Component {
     render(){
         const searchByText = (
             <Col xs={11} sm={11} md={11} lg={11}>
@@ -30,10 +30,11 @@ class MoviesListFilter extends React.Component {
                 <DropdownButton
                     title="Sort by..."
                     className="search-element"
+                    id="SortingSelection"
                     // onSelect={this.props.onTypeFilterChange}
                 >
-                    <MenuItem key={0} eventKey="Year">Year</MenuItem>
-                    <MenuItem key={1} eventKey="Episode">Episode</MenuItem>
+                    <MenuItem key={1} eventKey="Year">Year</MenuItem>
+                    <MenuItem key={2} eventKey="Episode">Episode</MenuItem>
                 </DropdownButton>
             </Col>
         );
@@ -49,33 +50,33 @@ class MoviesListFilter extends React.Component {
     }
 }
 
-const mapStateToProps = () => {
-    return {
-        // typeFilter: state.searchFilter.type
-    }
-};
+// const mapStateToProps = () => {
+//     return {
+//         // typeFilter: state.searchFilter.type
+//     }
+// };
 
-const mapDispatchToProps = () => {
-    return {
-        // onTextFilterChange: (e) => {
-        //     const action = textFilterChange(
-        //         e.target.value,
-        //     );
+// const mapDispatchToProps = () => {
+//     return {
+//         // onTextFilterChange: (e) => {
+//         //     const action = textFilterChange(
+//         //         e.target.value,
+//         //     );
 
-        //     dispatch(action)
-        // },
+//         //     dispatch(action)
+//         // },
 
-        // onTypeFilterChange: (eventKey, e) => {
-        //     const action = typeFilterChange(
-        //         eventKey,
-        //     );
+//         // onTypeFilterChange: (eventKey, e) => {
+//         //     const action = typeFilterChange(
+//         //         eventKey,
+//         //     );
 
-        //     dispatch(action)
-        // },
-    }
-};
+//         //     dispatch(action)
+//         // },
+//     }
+// };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MoviesListFilter);
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(MoviesListFilter);
