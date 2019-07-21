@@ -14,3 +14,7 @@
 .search-ribbon label {
     display: block;
 }
+
+.movie-row {
+    font-size: 12px
+}

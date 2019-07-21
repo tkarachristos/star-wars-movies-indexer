@@ -3,7 +3,6 @@ import React from 'react';
 import movies from "../api/mockData.js";
 
 import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
 import Movie from './Movie';
 
@@ -33,22 +32,25 @@ export default class MoviesList extends React.Component {
         return new RegExp("(" + this.escapeRegExp(value) + ")", flags);
     }
 
+    handleOnClick(index){
+        alert('You clicked the ' + (index+1) + ' ListGroupItem');
+    }
+
     render(){
         const regex = this.buildRegex(this.props.searchText);
 
-        const moviesList = movies.map(function(movie) {
+        const moviesList = movies.map(function(movie, index) {
             // const moviesList = this.props.movies.map(function(movie) {
 
             let itemContainsText = !!movie.fields.title.match(regex);
 
             if (itemContainsText){
                 return (
-                    <ListGroupItem action>
-                        <Movie
-                            key={movie.id}
-                            {...movie.fields}
-                        />
-                    </ListGroupItem>
+                    <Movie
+                        onClick={() => {this.handleOnClick(index)}}
+                        key={movie.id}
+                        {...movie.fields}
+                    />
                 );
             } else {
                 return null;

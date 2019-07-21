@@ -2,13 +2,18 @@ import React from 'react';
 
 import MoviesListFilter from "./MoviesListFilter";
 import MoviesList from "./MoviesList";
+import MovieDetails from "./MovieDetails";
 
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
+import movies from "../api/mockData.js";
+
 export default class App extends React.Component {
     render () {
+        const movie=movies[0];
+
         return (
             <div>
                 <div className="search-ribbon">
@@ -17,14 +22,16 @@ export default class App extends React.Component {
                 <div className="list-area">
                     <Grid fluid={true}>
                         <Row justify="start">
-                            <Col xs={7} sm={7} md={7} lg={7}>
+                            <Col xs={6} sm={6} md={6} lg={6}>
                                 <MoviesList
                                     searchText=""
                                     caseSensitiveMatch={false}
                                 />
                             </Col>
-                            <Col xs={5} sm={5} md={5} lg={5}>
-                                <div><h1>Movie Details</h1></div>
+                            <Col xs={6} sm={6} md={6} lg={6}>
+                                <MovieDetails
+                                    {...movie.fields}
+                                />
                             </Col>
                         </Row>
                     </Grid>
