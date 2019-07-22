@@ -2,7 +2,13 @@
   "name": "star-wars-movie-registry",
   "description": "App for listing Star Wars movies",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --port 3000"
+    "start": "webpack-dev-server --config webpack.config.js --port 3000",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "setupFiles": [
+      "./tools/testSetup.js"
+    ]
   },
   "dependencies": {
     "bootstrap": "4.3.1",
