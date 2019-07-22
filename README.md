@@ -7,4 +7,4 @@ In order to star the application:
 3. Navigate to http://localhost:3000/
 
 In order to run the unit tests:
-Run "npm test"
+- Run "npm test"
