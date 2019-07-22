@@ -5,6 +5,7 @@ export default {
   },
   movies: {
     list: [],
+    selection: -1,
     pending: false,
     error: ""
   }

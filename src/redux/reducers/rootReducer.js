@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { filterReducer } from "./filterReducer";
-import { apiReducer } from "./apiReducer";
+import { moviesReducer } from "./moviesReducer";
 
 const rootReducer = combineReducers({
   filter: filterReducer,
-  movies: apiReducer
+  movies: moviesReducer
 });
 
 export default rootReducer;

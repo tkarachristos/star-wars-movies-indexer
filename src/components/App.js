@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import MoviesListFilter from "./MoviesListFilter";
 import MoviesList from "./MoviesList";
@@ -8,11 +9,17 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
-import movies from "../api/mockData.js";
-
-export default class App extends React.Component {
+class App extends React.Component {
     render () {
-        const movie=movies[0];
+        var movieDetails = <div><p>No movie selected</p></div>
+        
+        if(this.props.selection > -1) {
+            const selectedMovie = this.props.movies.find(function(movie) {
+                return this.props.selection === movie.id;
+            }.bind(this));
+
+            movieDetails = <MovieDetails {...selectedMovie.fields} />
+        }
 
         return (
             <div>
@@ -29,9 +36,7 @@ export default class App extends React.Component {
                                 />
                             </Col>
                             <Col xs={6} sm={6} md={6} lg={6}>
-                                <MovieDetails
-                                    {...movie.fields}
-                                />
+                                {movieDetails}
                             </Col>
                         </Row>
                     </Grid>
@@ -40,3 +45,14 @@ export default class App extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        movies: state.movies.list,
+        selection: state.movies.selection
+    }
+};
+
+export default connect(
+    mapStateToProps
+)(App);

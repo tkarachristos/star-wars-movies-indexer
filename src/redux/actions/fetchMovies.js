@@ -1,4 +1,4 @@
-import {fetchMoviesPending, fetchMoviesSuccess, fetchMoviesError} from './moviesApi';
+import {fetchMoviesPending, fetchMoviesSuccess, fetchMoviesError} from './movies';
 
 function fetchMovies() {
     return dispatch => {

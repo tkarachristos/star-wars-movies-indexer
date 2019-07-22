@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import fetchMoviesAction from '../redux/actions/fetchMovies';
+import {movieSelected} from '../redux/actions/movies';
 
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 
@@ -95,7 +96,7 @@ class MoviesList extends React.Component {
             if (itemContainsText){
                 return (
                     <MovieItem
-                        onClick={() => {this.handleOnClick(index)}}
+                        onClick={() => {this.props.movieSelected(movie.id)}}
                         key={movie.id}
                         {...movie.fields}
                     />
@@ -123,7 +124,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({fetchMovies: fetchMoviesAction}, dispatch)
+    return bindActionCreators({
+        fetchMovies: fetchMoviesAction,
+        movieSelected
+    }, dispatch)
 };
 
 export default connect(

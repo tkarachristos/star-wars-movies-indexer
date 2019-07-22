@@ -1,25 +1,30 @@
-import {FETCH_MOVIES_PENDING, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_ERROR} from "../actions/moviesApi";
+import { ACTIONS } from "../actions/movies";
 import initialState from "./initialState";
 
-export function apiReducer(state = initialState.movies, action) {
+export function moviesReducer(state = initialState.movies, action) {
     switch(action.type) {
-        case FETCH_MOVIES_PENDING:
+        case ACTIONS.FETCH_MOVIES_PENDING:
             return {
                 ...state,
                 pending: true
             }
-        case FETCH_MOVIES_SUCCESS:
+        case ACTIONS.FETCH_MOVIES_SUCCESS:
             return {
                 ...state, 
                 list: action.list,
                 pending: false
             }
-        case FETCH_MOVIES_ERROR:
+        case ACTIONS.FETCH_MOVIES_ERROR:
             return {
                 ...state,
                 pending: false,
                 error: action.error
             }
+        case ACTIONS.MOVIE_SELECTED:
+            return {
+                ...state,
+                selection: action.id
+            }    
         default: 
             return state;
   }
