@@ -1,5 +1,5 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
@@ -8,9 +8,9 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
-// import { textFilterChange, typeFilterChange  } from "../actions/filter";
+import { textFilterChange, sortByChange  } from "../redux/actions/moviesFilter";
 
-export default class MoviesListFilter extends React.Component {
+class MoviesListFilter extends React.Component {
     render(){
         const searchByText = (
             <Col xs={11} sm={11} md={11} lg={11}>
@@ -18,20 +18,20 @@ export default class MoviesListFilter extends React.Component {
                     <input
                         type="search"
                         className="form-control search-element"
-                        // onChange={this.props.onTextFilterChange}
+                        onChange={this.props.onTextFilterChange}
                         placeholder="Type to search..."
                     />
                 </div>
             </Col>
         );
 
-        let searchByType = (
+        let sortBy = (
             <Col xs={1} sm={1} md={1} lg={1}>
                 <DropdownButton
                     title="Sort by..."
                     className="search-element"
                     id="SortingSelection"
-                    // onSelect={this.props.onTypeFilterChange}
+                    onSelect={this.props.onSortByChange}
                 >
                     <MenuItem key={1} eventKey="Year">Year</MenuItem>
                     <MenuItem key={2} eventKey="Episode">Episode</MenuItem>
@@ -42,7 +42,7 @@ export default class MoviesListFilter extends React.Component {
         return (
             <Grid fluid={true}>
                 <Row justify="start">
-                    {searchByType}
+                    {sortBy}
                     {searchByText}
                 </Row>
             </Grid>
@@ -50,33 +50,27 @@ export default class MoviesListFilter extends React.Component {
     }
 }
 
-// const mapStateToProps = () => {
-//     return {
-//         // typeFilter: state.searchFilter.type
-//     }
-// };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onTextFilterChange: (e) => {
+            const action = textFilterChange(
+                e.target.value
+            );
 
-// const mapDispatchToProps = () => {
-//     return {
-//         // onTextFilterChange: (e) => {
-//         //     const action = textFilterChange(
-//         //         e.target.value,
-//         //     );
+            dispatch(action)
+        },
 
-//         //     dispatch(action)
-//         // },
+        onSortByChange: (eventKey) => {
+            const action = sortByChange(
+                eventKey
+            );
 
-//         // onTypeFilterChange: (eventKey, e) => {
-//         //     const action = typeFilterChange(
-//         //         eventKey,
-//         //     );
+            dispatch(action)
+        },
+    }
+};
 
-//         //     dispatch(action)
-//         // },
-//     }
-// };
-
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(MoviesListFilter);
+export default connect(
+    null,
+    mapDispatchToProps
+)(MoviesListFilter);

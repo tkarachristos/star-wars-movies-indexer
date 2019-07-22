@@ -50,15 +50,46 @@ class MoviesList extends React.Component {
         alert('You clicked the ' + (index+1) + ' ListGroupItem');
     }
 
+    
     render(){
         if(!this.shouldComponentRender()) return <div>Fetching Movies</div>
 
         const regex = this.buildRegex(this.props.searchText);
                
-        const moviesList = this.props.movies.map(function(movie, index) {
-            console.log("movie: " + movie)
-            // const moviesList = this.props.movies.map(function(movie) {
+        const movies = this.props.movies;
 
+        // Apply sorting
+        movies.sort((a, b) => {
+            switch (this.props.sortBy) {
+                case "Year": {
+                    const yearA = a.fields.release_date.substring(0, 4);
+                    const yearB = b.fields.release_date.substring(0, 4);
+
+                    if(yearA < yearB) {
+                        return -1;
+                    }
+                    else if(yearA > yearB) {
+                        return 1;
+                    }
+                    return 0;
+                }
+                case "Episode": {
+                    if(a.fields.episode_id < b.fields.episode_id) {
+                        return -1;
+                    }
+                    else if(a.fields.episode_id > b.fields.episode_id) {
+                        return 1;
+                    }
+                    
+                    return 0;
+                }
+                default:
+                    return 0;
+            }
+        })
+
+        // Apply search text filter
+        const moviesList = movies.map(function(movie, index) {
             let itemContainsText = !!movie.fields.title.match(regex);
 
             if (itemContainsText){

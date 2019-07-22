@@ -11,13 +11,13 @@ export function fetchMoviesPending() {
 export function fetchMoviesSuccess(list) {
     return {
         type: FETCH_MOVIES_SUCCESS,
-        list: list
+        list
     }
 }
 
 export function fetchMoviesError(error) {
     return {
         type: FETCH_MOVIES_ERROR,
-        error: error
+        error
     }
 }

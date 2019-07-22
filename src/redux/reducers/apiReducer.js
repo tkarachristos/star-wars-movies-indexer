@@ -20,11 +20,7 @@ export function apiReducer(state = initialState.movies, action) {
                 pending: false,
                 error: action.error
             }
-      default: 
-          return state;
+        default: 
+            return state;
   }
 }
-
-export const getMovies = state => state.movies.list;
-export const getMoviesPending = state => state.movies.pending;
-export const getMoviesError = state => state.movies.error;

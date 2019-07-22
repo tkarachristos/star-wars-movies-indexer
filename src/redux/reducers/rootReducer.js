@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { apiReducer } from "./apiReducer";
 import { filterReducer } from "./filterReducer";
+import { apiReducer } from "./apiReducer";
 
 const rootReducer = combineReducers({
   filter: filterReducer,

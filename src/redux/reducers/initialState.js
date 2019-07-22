@@ -1,7 +1,7 @@
 export default {
   filter: {
     searchText: "",
-    sortBy: "Year"
+    sortBy: ""
   },
   movies: {
     list: [],
