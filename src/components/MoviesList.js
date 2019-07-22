@@ -57,7 +57,7 @@ class MoviesList extends React.Component {
 
         const regex = this.buildRegex(this.props.searchText);
                
-        const movies = this.props.movies;
+        const movies = this.props.movies.slice();
 
         // Apply sorting
         movies.sort((a, b) => {
