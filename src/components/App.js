@@ -18,7 +18,13 @@ class App extends React.Component {
                 return this.props.selection === movie.id;
             }.bind(this));
 
-            movieDetails = <MovieDetails {...selectedMovie.fields} />
+            const movieInfo = {
+                title: selectedMovie.fields.title,
+                opening_crawl: selectedMovie.fields.opening_crawl,
+                director: selectedMovie.fields.director
+            }
+
+            movieDetails = <MovieDetails {...movieInfo} />
         }
 
         return (
