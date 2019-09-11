@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -90,7 +91,7 @@ class MoviesList extends React.Component {
         })
 
         // Apply search text filter
-        const moviesList = movies.map(function(movie, index) {
+        const moviesList = movies.map(function(movie) {
             let itemContainsText = !!movie.fields.title.match(regex);
 
             if (itemContainsText){
@@ -129,6 +130,17 @@ const mapDispatchToProps = (dispatch) => {
         movieSelected
     }, dispatch)
 };
+
+MoviesList.propTypes = {
+    pending: PropTypes.bool,
+    fetchMovies: PropTypes.func,
+    caseSensitiveMatch: PropTypes.bool,
+    searchText: PropTypes.string,
+    movies: PropTypes.array,
+    sortBy: PropTypes.string,
+    index: PropTypes.number,
+    movieSelected: PropTypes.func
+}
 
 export default connect(
     mapStateToProps,

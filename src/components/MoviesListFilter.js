@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
@@ -69,6 +70,11 @@ const mapDispatchToProps = (dispatch) => {
         },
     }
 };
+
+MoviesListFilter.propTypes = {
+    onTextFilterChange: PropTypes.func,
+    onSortByChange: PropTypes.func
+}
 
 export default connect(
     null,

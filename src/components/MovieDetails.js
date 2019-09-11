@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function MovieDetails (props) {
     return (
@@ -8,4 +9,10 @@ export default function MovieDetails (props) {
             <p>Directed by: {props.director}</p>
         </div>
     );
+}
+
+MovieDetails.propTypes = {
+    title: PropTypes.string,
+    opening_crawl: PropTypes.string,
+    director: PropTypes.string
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -20,4 +21,11 @@ export default function MovieItem (props) {
             </Row>
         </ListGroupItem>
     );
+}
+
+MovieItem.propTypes = {
+    onClick: PropTypes.func,
+    episode_id: PropTypes.number,
+    title: PropTypes.string,
+    release_date: PropTypes.string
 }

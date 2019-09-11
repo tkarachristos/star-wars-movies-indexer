@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import MoviesListFilter from "./MoviesListFilter";
@@ -58,6 +59,11 @@ const mapStateToProps = (state) => {
         selection: state.movies.selection
     }
 };
+
+App.propTypes = {
+    selection: PropTypes.number,
+    movies: PropTypes.array,
+}
 
 export default connect(
     mapStateToProps
